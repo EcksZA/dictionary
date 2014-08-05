@@ -2,6 +2,9 @@ require 'rspec'
 require 'dictionary'
 
 describe Term do
+  before(:each) do
+    Term.clear
+  end
 
   it 'initilizes the dictionary with a word and definition' do
     my_dic = Term.new('Carrot', 'delicious orange vegetable')
@@ -45,26 +48,18 @@ describe Term do
     end
   end
 
-
-  describe ".user_input" do
-    it "it is a user input string for remove" do
-      user_input = Term.new("Mango")
-      user_input.should be_an_instance_of Term
+  describe ".remove" do
+    it "removes a dictionary term" do
+      my_dic_1 = Term.new('Carrot', 'delicious orange vegetable')
+      my_dic_1.save
+      my_dic_2 = Term.new('Mango', 'orange tropical fruit')
+      my_dic_2.save
+      my_dic_3 = Term.new('Apple', 'cold weather fruit, usually green')
+      my_dic_3.save
+      Term.remove('Mango')
+      Term.all.should eq [my_dic_1, my_dic_3]
     end
   end
-
-
-  # describe ".remove" do
-  #   it "removes a dictionary term" do
-  #     my_dic_1 = Term.new('Carrot', 'delicious orange vegetable')
-  #     my_dic_1.save
-  #     my_dic_2 = Term.new('Mango', 'orange tropical fruit')
-  #     my_dic_2.save
-  #     my_dic_3 = Term.new('Apple', 'cold weather fruit, usually green')
-  #     my_dic_3.save
-  #     Term.all.remove.should eq [my_dic_1, my_dic_3]
-  #   end
-  # end
 
 
 

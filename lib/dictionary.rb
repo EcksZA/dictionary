@@ -7,10 +7,6 @@ class Term
     @word, @definition = word, definition
   end
 
-  def Term.user_input
-    @user_input
-  end
-
   def word
     @word
   end
@@ -32,21 +28,19 @@ class Term
   end
 
   def Term.clear
-    []
+    @@word_bank = []
   end
 
   def Term.list_words
     @@word_bank.each do |diction|
-        @@words << diction.word
+      @@words << diction.word
     end
     @@words
   end
 
-  # def Term.remove
-
-  # end
-
-
-
-
+  def Term.remove(value)
+    @@word_bank.delete_if do |diction|
+      value == diction.word
+    end
+  end
 end

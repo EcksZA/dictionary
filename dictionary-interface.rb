@@ -1,24 +1,60 @@
 require './lib/dictionary'
 
+puts "Welcome to the dictionary."
+
 def dictionary_interface
-  puts "Welcome to the dictionary."
   puts "\n"
-  puts "Enter 'a' to add a word, enter 'l' to list a word
-        or enter 'x' to exit"
+  puts "Enter 'a' to add a word, enter 'l' to list a word,
+        's' to see the dictionary or enter 'x' to exit"
 
   user_choice = gets.chomp
+  add_new(user_choice)
+end
 
-  if user_choice == 'a'
+def add_new(the_choice)
+  if the_choice == 'a'
     puts "input your new word"
     new_word = gets.chomp
     puts "input your new definition"
     new_definition = gets.chomp
 
-    our_dic = Term.new(new_word, new_definition)
-    our_dic.show
-  elsif user_choice == 'l'
-    our_dic.list_words
-  elsif user_choice == 'x'
+    our_dict = Term.new(new_word, new_definition)
+    @dictionary = our_dict.save
+    puts our_dict.show
+    puts "\n"
+    puts "Would you like to add another word?"
+    puts "Press 'y' for yes or 'n' for no:"
+    puts "\n"
+    the_choice = gets.chomp
+
+      if the_choice == 'y'
+        add_new('a')
+      else
+        the_choice == 'n'
+        dictionary_interface
+      end
+  elsif the_choice == 's'
+    Term.all.each do |every|
+      puts every.word + ": " + every.definition
+    end
+    dictionary_interface
+  elsif the_choice == 'l'
+    Term.list_words.each {|every| puts every }
+    puts "\n"
+    puts "Press 'd' if you would like to delete one of these words"
+    puts "Press 'e' if you would like to edit a word or press 'x' if you would like to exit"
+    new_choice = gets.chomp
+      if new_choice == 'd'
+        puts "Enter the word that you would like to delete"
+        delete_word = gets.chomp
+        Term.remove(delete_word)
+        Term.list_words.each {|every| puts every }
+      elsif new_choice == 'e'
+      else
+        dictionary_interface
+      end
+    dictionary_interface
+  elsif the_choice == 'x'
     puts "Thank you and goodbye!"
   else
     puts "That is not a valid entry. Please try again."
