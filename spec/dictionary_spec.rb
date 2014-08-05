@@ -13,4 +13,16 @@ describe Term do
     my_dic.show.should eq "Carrot: delicious orange vegetable"
   end
 
+  describe ".all" do
+    it "initializes an empty array to store the words and definitions" do
+      Term.all.should eq []
+    end
+
+    it 'saves all of the words and definitions in the word bank array' do
+      my_dic = Term.new('Carrot', 'delicious orange vegetable')
+      my_dic.save
+      Term.all.should eq [my_dic]
+    end
+  end
+
 end
