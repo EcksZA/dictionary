@@ -43,4 +43,12 @@ class Term
       value == diction.word
     end
   end
+
+  def Term.edit(value1, value2, value3)
+    @@word_bank.each do |diction|
+      if value2 == diction.word
+        diction.word = diction.word.sub(value2, value3)
+      end
+    end
+  end
 end

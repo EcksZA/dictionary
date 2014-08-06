@@ -50,6 +50,21 @@ def add_new(the_choice)
         Term.remove(delete_word)
         Term.list_words.each {|every| puts every }
       elsif new_choice == 'e'
+        puts "Enter the word you would like to edit"
+        edit_word = gets.chomp
+        puts "Press 'w' to edit the word or press 'd' to edit the definition"
+        new_choice2 = gets.chomp
+        if new_choice2 == 'w'
+          puts "What would you like to change the word to?"
+          word_option = gets.chomp
+
+        else
+
+
+
+
+
+
       else
         dictionary_interface
       end

@@ -61,6 +61,16 @@ describe Term do
     end
   end
 
+  describe ".edit" do
+    it "replaces the selected word with new information" do
+    my_dic = Term.new('Mango' , 'orange tropical fruit')
+    my_dic.save
+    Term.edit('w', 'Mango', 'Orange')
+    Term.all.should eq ['Orange' , 'orange tropical fruit']
+    # Term.edit('Orange', 'd')
+    # Term.all.should eq ['Orange', 'orange cold weather fruit']
+    end
+  end
 
 
 
@@ -71,17 +81,6 @@ describe Term do
 
 
 
-
-
-
-
-
-  # describe ".edit_word" do
-  #   it "replaces the selected word with new information" do
-  #   my_dic = Term.new('Mango' , 'orange tropical fruit')
-  #   Term.edit_word.should eq ['Orange' , 'orange cold weather fruit']
-  #   end
-  # end
 
 
 
